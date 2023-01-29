@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <div class="">
+            WEB Socket
+            <br />
+            <img width="300px" src="./dist/img/websocket.png" alt="" srcset="" />
+          </div>
+        </section>
+        <section>
+          <h1>The WebSocket API (WebSockets)</h1>
+          <p>
+            The WebSocket API is an advanced technology that makes it possible
+            to open a two-way interactive communication session between the
+            user's browser and a server. With this API, you can send messages to
+            a server and receive event-driven responses without having to poll
+            the server for a reply.
+          </p>
+        </section>
+        <section>
+          <h1>Instance properties</h1>
+
+          <pre><code data-trim data-noescape>
+            WebSocket.binaryType
+            // The binary data type used by the
+            // connection.
+
+            WebSocket.bufferedAmount
+            // Read only The number of bytes of queued data.
+
+            WebSocket.extensions
+            //The extensions selected by the server.
+
+            WebSocket.protocol
+            // The sub-protocol selected by the server.
+
+            WebSocket.readyState
+            // The current state of the connection.
+
+            WebSocket.url
+            // The absolute URL of the WebSocket.
+          </code></pre>
+        </section>
+        <section>
+          WebSocket Methods
+
+          <pre><code data-trim data-noescape>
+            WebSocket.close()
+            // Closes the connection.
+
+            WebSocket.send()
+            // Enqueues data to be transmitted.
+          </code></pre>
+        </section>
+        <section>
+          
+                    <h2>WebSocket Events</h2>
+      Listen to these events we can using addEventListener() or by
+      assigning an event listener to the onEventName property of this
+      interface. 
+          <section>
+            <pre><code data-trim data-noescape>
+              WebSocket.close()
+              // Fired when a connection with a WebSocket is closed.
+              // Also available via the onclose property
+            </code></pre>
+          </section>
+          <section>
+            <pre><code data-trim data-noescape>
+              WebSocket.error()
+              // Fired when a connection with a WebSocket has been closed
+              // because of an error,
+              // such as when some data couldn't be sent.
+              // Also available via the onerror property.
+          </code></pre>
+          </section>
+          <section>
+            <pre><code data-trim data-noescape>
+              WebSocket.message()
+              // Fired when data is received through a WebSocket
+              // Also available via the onmessage property.
+          </code></pre>
+          </section>
+          <section>
+            <pre><code data-trim data-noescape>
+              WebSocket.open()
+              // Fired when a connection with a WebSocket is opened.
+              // Also available via the onopen property.
+            </code></pre>
+          </section>
+        </section>
+        <section>
+          Example
+          <pre><code data-line-numbers="3|6-8|11-13">
+  // Create WebSocket connection.
+  const socket = new WebSocket('ws://localhost:8080');
+            
+  // Connection opened
+  socket.addEventListener('open', (event) => {
+      socket.send('Hello Server!');
+  });
+  
+  // Listen for messages
+  socket.addEventListener('message', (event) => {
+      console.log('Message from server ', event.data);
+  });
+
+          </code></pre>
+        </section>
+        <section>Thank you!
+          Have a nice day!</section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
